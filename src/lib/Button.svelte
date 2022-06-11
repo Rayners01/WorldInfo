@@ -1,13 +1,16 @@
 <script>
+
   export let text;
   const go = () => {
-    console.log("go!")
+    console.log("Go!")
   }
 </script>
 
+<a href="/population/gb">
 <button on:click={go}>
   {text}
 </button>
+</a>
 
 <style>
   button {

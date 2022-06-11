@@ -1,5 +1,6 @@
 // @ts-ignore
-import App from './pages/Home.svelte'
+import App from './pages/App.svelte'
+import "./global.scss"
 
 const app = new App({
   target: document.getElementById('app')

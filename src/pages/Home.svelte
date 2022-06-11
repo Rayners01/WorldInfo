@@ -1,18 +1,19 @@
 <script>
-import logo from '../assets/world.png';
+import Logo from '../lib/Logo.svelte';
 import Button from '../lib/Button.svelte';
 import Settings from '../lib/Settings.svelte';
 </script>
 
 <main>
+
   <Settings />
-  <img src={logo} alt="Infoworld logo" />
-  <h1>InfoWorld</h1>
+  <Logo />
+  <h1>WorldInfo</h1>
 
   <Button text="Let's go!"/>
 
   <p>
-    Welcome to <a href="https://infoworld.org.uk">InfoWorld</a>!
+    Welcome to <a href="https://worldinfo.co.uk">WorldInfo</a>!
   </p>
 
   <p>
@@ -30,11 +31,6 @@ import Settings from '../lib/Settings.svelte';
     text-align: center;
     padding: 1em;
     margin: 0 auto;
-  }
-
-  img {
-    height: 16rem;
-    position: relative;
   }
 
   h1 {
