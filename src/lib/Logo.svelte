@@ -17,8 +17,7 @@
     position: relative;
   }
   div {
-    display: flex;
-    justify-content: var(--align);
+    text-align: var(--align);
     padding: 10px;
   }
 </style>

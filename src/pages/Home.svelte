@@ -39,7 +39,7 @@ import Settings from '../lib/Settings.svelte';
     font-size: 4rem;
     font-weight: 100;
     line-height: 1.1;
-    margin: 2rem auto;
+    margin: 2rem ;
     max-width: 14rem;
   }
 
