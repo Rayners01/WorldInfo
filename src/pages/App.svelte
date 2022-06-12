@@ -1,4 +1,6 @@
 <script>
+import Footer from "../lib/util/Footer.svelte";
+
 import { Router, Route } from "svelte-navigator";
 import Explorer from "./Explorer.svelte";
 import Home from "./Home.svelte";
@@ -14,3 +16,5 @@ import Unemployment from "./LineCharts/Unemployment.svelte";
     <Route path="gdp/:code" component={Gdp} />
     <Route path="unemployment/:code" component={Unemployment} />
 </Router>
+
+<Footer />
