@@ -64,6 +64,7 @@
   border: 2px solid black;
   border-radius: 5px;
   padding: 10px;
+  cursor: pointer;
 }
 
 .close {
@@ -80,14 +81,20 @@
   background-color: white;
 }
 
+.blank {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
 </style>
 
   
 <div class="container">
 
-  <span on:click={action} on:mouseenter={() => current = true} on:mouseleave={() => current = false}>
+  <button class="blank" on:click={action} on:mouseenter={() => current = true} on:mouseleave={() => current = false}>
     <img class="{current ? 'icon hover' : 'icon'}" style="--duration: {duration}" src={settings_icon} alt="Settings">
-  </span>
+  </button>
 
 </div>
 

@@ -2,8 +2,6 @@ import { get, writable } from "svelte/store";
 
 const stored = Boolean(JSON.parse(localStorage.getItem("dark")));
 
-console.log(stored);
-
 export const theme = writable(stored || false);
 
 let themeDuplicate = get(theme);

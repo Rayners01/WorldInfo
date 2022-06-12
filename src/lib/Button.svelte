@@ -1,12 +1,13 @@
 <script>
 
   export let text;
+  export let href;
   const go = () => {
     console.log("Go!")
   }
 </script>
 
-<a href="/population/gb">
+<a href={href}>
 <button on:click={go}>
   {text}
 </button>

@@ -10,7 +10,7 @@ import Settings from '../lib/Settings.svelte';
   <Logo />
   <h1>WorldInfo</h1>
 
-  <Button text="Let's go!"/>
+  <Button text="Let's go!" href="/explorer"/>
 
   <p>
     Welcome to <a href="https://worldinfo.co.uk">WorldInfo</a>!
