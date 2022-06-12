@@ -4,10 +4,12 @@ const stored = Boolean(JSON.parse(localStorage.getItem("dark")));
 
 export const theme = writable(stored || false);
 
-let themeDuplicate = get(theme);
-
 export const getDarkMode = () => {
-    return themeDuplicate;
+    return get(theme);
+}
+
+export const getThemeStore = () => {
+    return theme;
 }
 
 theme.subscribe((val) => {
@@ -16,6 +18,5 @@ theme.subscribe((val) => {
     } else {
       window.document.body.classList.remove('dark-mode')
     }
-    themeDuplicate = val;
     localStorage.setItem("dark", JSON.stringify(val));
 });

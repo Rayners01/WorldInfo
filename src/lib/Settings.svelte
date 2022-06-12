@@ -63,7 +63,7 @@
 .settings {
   border: 2px solid black;
   border-radius: 5px;
-  padding: 10px;
+  padding: 20px;
   cursor: pointer;
 }
 
@@ -71,10 +71,11 @@
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  bottom: 40px;
+  bottom: 60px;
   right: 220px;
   position: absolute;
   font-size: 20px;
+  color: var(--theme);
 }
 
 .white {
@@ -102,7 +103,7 @@
 <Overlay />
 <div class="settings-container">
   <div class="{`settings${vartheme ? " dark-mode" : " white"}`}">
-    <button class="close" on:click={action}>&#10006;</button>
+    <button class="close" style="--theme: {vartheme};" on:click={action}>&#10006;</button>
     <Switch bind:value={vartheme} onClick={() => toggle()} label="Enable dark mode" fontSize={24} design="slider" />
   </div>
 </div>

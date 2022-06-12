@@ -11,6 +11,7 @@ import Card from "../lib/util/Card.svelte";
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: center;
 }
 
 </style>
@@ -19,7 +20,6 @@ import Card from "../lib/util/Card.svelte";
 
 <div class="flex-container">
     <Card title="Population" body="Explore population" link="/population/gb"/>
-    <Card title="Placeholder 1" body="Explore placeholder" link="/placeholder"/>
-    <Card title="Placeholder 2" body="Explore placeholder" link="/placeholder"/>
-    <Card title="Placeholder 3" body="Explore placeholder" link="/placeholder"/>
+    <Card title="GDP" body="Explore GDP" link="/gdp/gb"/>
+    <Card title="Unemployment" body="Explore Unemployment" link="/unemployment/gb"/>
 </div>

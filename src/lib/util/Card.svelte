@@ -18,6 +18,7 @@ div {
     border-radius: 10px;
     margin: 10px;
     max-width: 500px;
+    min-width: 200px;
 }
 
 a {

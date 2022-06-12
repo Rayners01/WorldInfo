@@ -3,7 +3,6 @@
   export let text;
   export let href;
   const go = () => {
-    console.log("Go!")
   }
 </script>
 
