@@ -6,7 +6,6 @@
 	import "@carbon/charts/styles.css";
 	import { getThemeStore } from "../../store.js";
 	import Switch from "../util/Switch.svelte";
-import { toggle_class } from "svelte/internal";
 
 	export let api;
 	export let options;

@@ -17,13 +17,13 @@
 		let options = []
 		Object.keys(obj).forEach(o => {
 			options.push({
-				label: obj[o],
+				label: obj[o]["name"],
 				value: o
 			})
 		});
 		const c = code.split("+");
 		c.forEach(cd => {
-			selected.push({ label: obj[cd.toUpperCase()], value: cd.toUpperCase() });
+			selected.push({ label: obj[cd.toUpperCase()]["name"], value: cd.toUpperCase() });
 		});
 		return options;
 	})();
@@ -62,7 +62,7 @@
 </script>
 
 <style>
-#container {
+.container {
 	display: flex;
 	justify-content: center;
 }
@@ -76,7 +76,7 @@
 			</Multiselect>
 		{/await}
 
-	<div id="container">
+	<div class="container">
 		<Line api="linedata?indicator={api_path}&code={code}" options="{options}" />
 	</div>
 </main>
