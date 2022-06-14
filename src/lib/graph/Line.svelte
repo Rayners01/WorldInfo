@@ -17,8 +17,11 @@
 	const fetchData = (async () => {
 		const response = await fetch(process.env.API_URL + api);
     	const json =  await response.json();
-		options.axes.left.title = json.info.value
-		source = json.info.source
+		if (json.info) {
+			options.axes.left.title = json.info.value
+			return json.data
+			source = json.info.source
+		}
 		return json;
 	})();
 
@@ -49,12 +52,14 @@
 <div class="container">
 <Switch bind:value={log} onClick={(() => toggle())} label="Logarithmic" fontSize={24} design="slider" />
 <LineChart
-	data={data.data}
+	data={data}
 	options={options}
 	data-carbon-theme={dark}
 	/>
 </div>
+{#if source}
 <div class="source">
 	<p>Source: {source}</p> 
 </div>
+{/if}
 {/await}

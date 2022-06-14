@@ -9,6 +9,7 @@ import Population from "./LineCharts/Population.svelte";
 import Unemployment from "./LineCharts/Unemployment.svelte";
 import Imports from "./CircleCharts/Imports.svelte";
 import Exports from "./CircleCharts/Exports.svelte";
+import Polls from "./LineCharts/Polls.svelte";
 </script>
 
 <Router>
@@ -19,6 +20,7 @@ import Exports from "./CircleCharts/Exports.svelte";
     <Route path="unemployment/:code" component={Unemployment} />
     <Route path="import/:code/:year" component={Imports} />
     <Route path="export/:code/:year" component={Exports} />
+    <Route path="poll/:party" component={Polls} />
 </Router>
 
 <Footer />

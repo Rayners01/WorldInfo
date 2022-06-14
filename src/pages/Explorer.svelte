@@ -29,6 +29,7 @@ h2 {
     <Card title="Population" body="View or compare population figures." link="/population/gb"/>
     <Card title="GDP" body="View or compare GDP figures." link="/gdp/gb"/>
     <Card title="Unemployment" body="View or compare unemployment figures." link="/unemployment/gb"/>
+    <Card title="UK Opinion Polls" body="View political polls in the UK." link="/poll/all" />
 </div>
 
 <h2>Circle Charts</h2>
