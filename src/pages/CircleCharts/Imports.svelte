@@ -11,8 +11,7 @@ export let year;
 <Header />
 
 <Circle api="trade?code={code}&year={year}&type=1" options={{
-	"title": "Imports (US$)",
 	"canvasZoom": {
 		"enabled": true
 	}
-}}/>
+}} title="[country] Exports [year] (USD)"/>

@@ -34,5 +34,5 @@ h2 {
 <h2>Circle Charts</h2>
 <div class="flex-container">
   <Card title="Exports" body="View a country's exports." link="/export/gb/2021"/>
-  <Card title="Imports" body="View a country's imports." link="/import/gb/2021"/>
+  <Card title="Imports" body="View a country's imports." link="/import/gb/now"/>
 </div>

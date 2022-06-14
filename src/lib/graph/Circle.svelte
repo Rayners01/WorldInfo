@@ -7,11 +7,16 @@
 
     export let api;
     export let options;
+	export let title;
+
+	let total;
 
     const fetchData = (async () => {
 		const response = await fetch(process.env.API_URL + api);
     	const json =  await response.json();
-		return json;
+		options.title = title.replace("[country]", json["info"]["country"]).replace("[year]", json["info"]["year"]);
+		total = json["info"]["total"];
+		return json["dataset"];
 	})();
 
     let dark;
@@ -30,20 +35,34 @@
 </script>
 
 <style>
-.container {
+.circle {
     display: flex;
 	justify-content: center;
+}
+
+.container {
+	position: absolute;
+}
+
+.total {
+	text-align: center;
+	position: relative;
 }
 </style>
 
 {#await fetchData}
     Loading...
 {:then data} 
+<div class=circle>
 <div class="container">
 <CirclePackChart
 data={data}
 options={options}
 data-carbon-theme={dark}
 />
+</div>
+</div>
+<div class="total">
+	<p>Total: ${total}</p> 
 </div>
 {/await}
