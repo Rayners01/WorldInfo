@@ -1,12 +1,14 @@
 <script>
-	import Line from "../lib/graph/Line.svelte";
+	import Line from "../../lib/graph/Line.svelte";
 	import Multiselect from "svelte-multiselect";
+    import Header from "../../lib/util/Header.svelte";
+    import { getCode } from "../../store.js";
 
-	export let name;
+	export let api_path;
+	export let code;
 
-	export let api_path
+    getCode().set(code);
 
-	const code = window.location.pathname.toLowerCase().replace(`/${name.toLowerCase()}/`, "");
 	let selected = [];
 	const height = window.innerHeight*0.8;
 	const width = Math.max(window.innerWidth*0.8, 1000);
@@ -34,16 +36,16 @@
 			vals.push(o.value);
 		});
 		const path = vals.join("+")
-		window.location.href = `/${name.toLowerCase()}/` + path;
+        getCode().set(path);
+		//window.location.href = `/line/${api_path.toLowerCase()}/` + path;
 	}
 
 	const options = {
-			"title": `${name}`,
 			"axes": {
 				"bottom": {
 					"title": "Date",
 					"mapsTo": "key",
-					"scaleType": "labels"
+					"scaleType": "time"
 				},
 				"left": {
 					"mapsTo": "value",
@@ -68,17 +70,17 @@
 }
 </style>
 
-<main>
-		{#await fetchCountries}
-		Loading...
-			{:then data} 
-			<Multiselect id='country' --sms-text-color="#49c22b" --sms-max-height="200px" --sms-max-width="500px" options={data} bind:selected on:change={update}>
-			</Multiselect>
-		{/await}
+<Header />
 
-	<div class="container">
-		<Line api="linedata?indicator={api_path}&code={code}" options="{options}" />
-	</div>
-</main>
+{#await fetchCountries}
+Loading...
+	{:then data} 
+	<Multiselect id='country' --sms-text-color="#49c22b" --sms-max-height="200px" --sms-max-width="500px" options={data} bind:selected on:change={update}>
+	</Multiselect>
+{/await}
+
+<div class="container">
+	<Line api="linedata?indicator={api_path}&code=" code="{code}" options="{options}" />
+</div>
 
 <svelte:window on:resize={onResize} />

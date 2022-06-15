@@ -3,6 +3,9 @@
 import Footer from "../../lib/util/Footer.svelte";
 import Header from "../../lib/util/Header.svelte";
 import Line from "../../lib/graph/Line.svelte";
+import { getCode } from "../../store.js";
+import Multiselect from "svelte-multiselect";
+import { select_options } from "svelte/internal";
 
 export let party;
 
@@ -10,6 +13,46 @@ if (party === "all") party = "con+lab+reform+green+libdem+snp"
 
 const height = window.innerHeight*0.8;
 const width = Math.max(window.innerWidth*0.8, 1000);
+
+const opts = [
+	{
+		label: "Conservatives",
+		value: "con"
+	},
+	{
+		label: "Labour",
+		value: "lab"
+	},
+	{
+		label: "Liberal Democrats",
+		value: "libdem"
+	},
+	{
+		label: "Green Party",
+		value: "green"
+	},
+	{
+		label: "SNP",
+		value: "snp"
+	},
+	{
+		label: "Reform UK",
+		value: "reform"
+	}
+];
+
+let selected = Array.from(party.split("+"), p => opts.find(q => q.value === p));
+
+getCode().set(party);
+
+const update = () => {
+	let vals = []
+	selected.forEach((o) => {
+		vals.push(o.value);
+	});
+	const path = vals.join("+");
+	getCode().set(path);
+}
 
 </script>
 
@@ -21,8 +64,12 @@ const width = Math.max(window.innerWidth*0.8, 1000);
 </style>
 
 <Header />
+
+<Multiselect id='poll' --sms-text-color="#49c22b" --sms-max-height="200px" --sms-max-width="500px" options={opts} bind:selected on:change={update}>
+</Multiselect>
+
 <div class="container">
-<Line api="poll?party={party}" options="{{
+<Line api="poll?party=" code="{party}" options="{{
     "title": "UK Polls since 2020",
 	"axes": {
 		"bottom": {

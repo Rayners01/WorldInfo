@@ -4,9 +4,10 @@
 
 	import "@carbon/styles/css/styles.css";
 	import "@carbon/charts/styles.css";
-	import { getThemeStore } from "../../store.js";
+	import { getCode, getThemeStore } from "../../store.js";
 	import Switch from "../util/Switch.svelte";
 
+	export let code;
 	export let api;
 	export let options;
 
@@ -15,15 +16,16 @@
 	let log = false;
 
 	const fetchData = (async () => {
-		const response = await fetch(process.env.API_URL + api);
+		const response = await fetch(process.env.API_URL + api + code);
     	const json =  await response.json();
 		if (json.info) {
-			options.axes.left.title = json.info.value
+			options.axes.left.title = json.info.value;
+			options.title = json.info.value;
+			source = json.info.source;
 			return json.data
-			source = json.info.source
 		}
 		return json;
-	})();
+	});
 
 	const toggle = () => {
 		options.axes.left.scaleType = log ? "log" : "linear";
@@ -34,6 +36,13 @@
 	getThemeStore().subscribe((b) => {
 		dark = b ? "g90" : "white";
 	})
+
+	let promise = fetchData();
+
+	getCode().subscribe((c) => {
+		code = c;
+		promise = fetchData();
+	});
 
 </script>
 
@@ -46,8 +55,11 @@
 }
 </style>
 
-{#await fetchData}
-<p>Loading...</p>
+{#await promise}
+<LineChart
+	options={options}
+	data-carbon-theme={dark}
+	/>
 {:then data}
 <div class="container">
 <Switch bind:value={log} onClick={(() => toggle())} label="Logarithmic" fontSize={24} design="slider" />

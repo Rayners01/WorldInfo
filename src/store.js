@@ -4,6 +4,12 @@ const stored = Boolean(JSON.parse(localStorage.getItem("dark")));
 
 export const theme = writable(stored || false);
 
+export const code = writable("");
+
+export const getCode = () => {
+    return code;
+}
+
 export const getDarkMode = () => {
     return get(theme);
 }
