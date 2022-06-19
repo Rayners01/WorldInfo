@@ -72,8 +72,9 @@
       event.target.style.setProperty('--stroke', 'purple');
       const index = json.findIndex(x => x["constituency"] === name);
       const party = json[index];
-      const x = event.clientX;
-      const y = event.clientY;
+      const x = event.layerX;
+      const y = event.layerY;
+      console.log(event);
       selected = party;
       const cPath = dataset.find(x => x["properties"]["PCON20NM"].toLowerCase() === name.toLowerCase());
       /*points = "";
@@ -85,8 +86,8 @@
       constProj = d3.geoMercator().fitSize([80, 80], cPath);
       constPath = d3.geoPath().projection(constProj);
       d3.select("#tooltip")
-        .style("left", `${x+35}px`)
-        .style("top", `${y-50}px`)
+        .style("left", `${x+30}px`)
+        .style("top", `${y-30}px`)
         .style("position", "absolute");
       visible = true;
       lastClicked = event.target;
