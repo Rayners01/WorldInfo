@@ -8,7 +8,7 @@ a {
 }
 
 p {
-    position: absolute;
+    position: fixed;
     margin-left: auto;
     margin-right: auto;
     left: 0;

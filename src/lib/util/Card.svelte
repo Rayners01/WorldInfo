@@ -5,6 +5,7 @@ import { getDarkMode } from "../../store.js";
 export let title;
 export let body;
 export let link;
+export let img_path
 
 const bg = getDarkMode() ? "#2b4154" : "#7893ab";
 </script>
@@ -25,11 +26,16 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+img {
+    width: 80%;
+}
 </style>
 
 <a href={link}>
 <div style="--bg: {bg}">
     <h2>{title}</h2>
     <p>{body}</p>
+    <!-- <img src={img_path} alt={title}> -->
 </div>
 </a>

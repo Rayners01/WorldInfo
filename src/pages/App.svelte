@@ -8,6 +8,7 @@ import Imports from "./CircleCharts/Imports.svelte";
 import Exports from "./CircleCharts/Exports.svelte";
 import Polls from "./LineCharts/Polls.svelte";
 import Line from "./LineCharts/WBLine.svelte";
+import Election from "./Election.svelte";
 </script>
 
 <Router>
@@ -17,6 +18,7 @@ import Line from "./LineCharts/WBLine.svelte";
     <Route path="import/:code/:year" component={Imports} />
     <Route path="export/:code/:year" component={Exports} />
     <Route path="poll/:party" component={Polls} />
+    <Route path="ge_2019" component={Election} />
 </Router>
 
 <Footer />

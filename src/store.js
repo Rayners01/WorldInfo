@@ -2,7 +2,7 @@ import { get, writable } from "svelte/store";
 
 const stored = Boolean(JSON.parse(localStorage.getItem("dark")));
 
-export const theme = writable(stored || false);
+export const theme = writable(stored ? stored : true);
 
 export const code = writable("");
 
