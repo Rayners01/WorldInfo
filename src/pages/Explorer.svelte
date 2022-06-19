@@ -12,7 +12,6 @@ import Card from "../lib/util/Card.svelte";
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  overflow: scroll;
 }
 
 h2 {
