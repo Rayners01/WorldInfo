@@ -1,6 +1,6 @@
 <script>
 
-import Election from "../lib/graph/map/constituency/Constituency.svelte";
+import Election from "../lib/graph/map/Constituency.svelte";
 
 </script>
 

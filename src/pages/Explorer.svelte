@@ -10,8 +10,9 @@ import Card from "../lib/util/Card.svelte";
 
 .flex-container {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
+  overflow: scroll;
 }
 
 h2 {

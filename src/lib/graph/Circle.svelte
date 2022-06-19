@@ -4,6 +4,7 @@
 	import "@carbon/styles/css/styles.css";
 	import "@carbon/charts/styles.css";
     import { getThemeStore } from "../../store.js";
+	import Circle from "../util/Circle.svelte";
 
     export let api;
     export let options;
@@ -51,7 +52,7 @@
 </style>
 
 {#await fetchData}
-    Loading...
+<Circle color="#3977e3" />
 {:then data} 
 <div class=circle>
 <div class="container">

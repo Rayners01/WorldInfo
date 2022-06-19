@@ -15,6 +15,9 @@
       border-image: initial;
       border-radius: 50%;
       animation: var(--duration) linear 0s infinite normal none running rotate;
+      position: absolute;
+      top: 50%;
+      left: 50%;
     }
     @keyframes rotate {
       0% {

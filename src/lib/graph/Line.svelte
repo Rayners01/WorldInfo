@@ -7,6 +7,8 @@
 	import { getCode, getThemeStore } from "../../store.js";
 	import Switch from "../util/Switch.svelte";
 
+	import Circle from "../util/Circle.svelte";
+
 	export let code;
 	export let api;
 	export let options;
@@ -60,6 +62,7 @@
 	options={options}
 	data-carbon-theme={dark}
 	/>
+	<Circle color="#3977e3" />
 {:then data}
 <div class="container">
 <Switch bind:value={log} onClick={(() => toggle())} label="Logarithmic" fontSize={24} design="slider" />

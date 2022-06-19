@@ -31,12 +31,16 @@
 	})();
 
 	const update = () => {
+		if (selected.length == 0) {
+			return;
+		}
 		let vals = []
 		selected.forEach((o) => {
 			vals.push(o.value);
 		});
 		const path = vals.join("+")
         getCode().set(path);
+		window.history.replaceState({}, '', `/line/${api_path}/${path}`);
 		//window.location.href = `/line/${api_path.toLowerCase()}/` + path;
 	}
 
@@ -68,16 +72,22 @@
 	display: flex;
 	justify-content: center;
 }
+
+.country-container {
+	margin-left: 5%;
+}
 </style>
 
 <Header />
 
+<div class="country-container">
 {#await fetchCountries}
 Loading...
 	{:then data} 
 	<Multiselect id='country' --sms-text-color="#49c22b" --sms-max-height="200px" --sms-max-width="500px" options={data} bind:selected on:change={update}>
 	</Multiselect>
 {/await}
+</div>
 
 <div class="container">
 	<Line api="linedata?indicator={api_path}&code=" code="{code}" options="{options}" />

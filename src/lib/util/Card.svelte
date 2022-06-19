@@ -18,8 +18,8 @@ div {
     text-align: center;
     border-radius: 10px;
     margin: 10px;
-    max-width: 500px;
-    min-width: 200px;
+    width: 360px;
+    height: 140px;
 }
 
 a {

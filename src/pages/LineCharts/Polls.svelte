@@ -46,12 +46,16 @@ let selected = Array.from(party.split("+"), p => opts.find(q => q.value === p));
 getCode().set(party);
 
 const update = () => {
+	if (selected.length == 0) {
+		return;
+	}
 	let vals = []
 	selected.forEach((o) => {
 		vals.push(o.value);
 	});
-	const path = vals.join("+");
-	getCode().set(path);
+	const path = vals.join("+")
+    getCode().set(path);
+	window.history.replaceState({}, '', `/poll/${path}`);
 }
 
 </script>
