@@ -4,6 +4,10 @@
     
     export let code;
     export let year;
+
+    export let location, navigate;
+    location = "";
+    navigate = "";
     
 </script>
     

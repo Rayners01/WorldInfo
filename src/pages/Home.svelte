@@ -2,6 +2,12 @@
 import Logo from '../lib/Logo.svelte';
 import Button from '../lib/Button.svelte';
 import Settings from '../lib/Settings.svelte';
+
+//this is stupid but it was annoying me >:(
+
+export let location, navigate;
+location = "";
+navigate = "";
 </script>
 
 <main>
@@ -39,7 +45,8 @@ import Settings from '../lib/Settings.svelte';
     font-size: 4rem;
     font-weight: 100;
     line-height: 1.1;
-    margin: 2rem ;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     max-width: 14rem;
   }
 

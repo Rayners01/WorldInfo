@@ -11,8 +11,12 @@ export let party;
 
 if (party === "all") party = "con+lab+reform+green+libdem+snp"
 
-const height = window.innerHeight*0.8;
-const width = Math.max(window.innerWidth*0.8, 1000);
+export let location, navigate;
+location = "";
+navigate = "";
+
+let height = window.innerHeight*0.8;
+let width = Math.max(window.innerWidth*0.8, 1000);
 
 const opts = [
 	{
@@ -45,6 +49,7 @@ let selected = Array.from(party.split("+"), p => opts.find(q => q.value === p));
 
 getCode().set(party);
 
+
 const update = () => {
 	if (selected.length == 0) {
 		return;
@@ -58,12 +63,24 @@ const update = () => {
 	window.history.replaceState({}, '', `/poll/${path}`);
 }
 
+let align;
+
+const setAlign = (() => align = window.innerWidth >= 1020 ? "center" : "left");
+
+setAlign();
+
+const onResize = () => {
+	height = window.innerHeight*0.8;
+	width = Math.max(window.innerWidth*0.8, 1000);
+	setAlign();
+}
+
 </script>
 
 <style>
 .container {
     display: flex;
-	justify-content: center;
+	justify-content: var(--align);
 }
 </style>
 
@@ -72,7 +89,7 @@ const update = () => {
 <Multiselect id='poll' --sms-text-color="#49c22b" --sms-max-height="200px" --sms-max-width="500px" options={opts} bind:selected on:change={update}>
 </Multiselect>
 
-<div class="container">
+<div class="container" style="--align: {align};">
 <Line api="poll?party=" code="{party}" options="{{
     "title": "UK Polls since 2020",
 	"axes": {
@@ -113,3 +130,5 @@ const update = () => {
 </div>
 
 <Footer />
+
+<svelte:window on:resize={onResize} />

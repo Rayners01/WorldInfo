@@ -4,6 +4,10 @@
     import Header from "../../lib/util/Header.svelte";
     import { getCode } from "../../store.js";
 
+	export let location, navigate;
+	location = "";
+	navigate = "";
+
 	export let api_path;
 	export let code;
 
@@ -60,9 +64,16 @@
 			"width": `${width}px`
 	}
 
+	let align;
+
+	const setAlign = (() => align = window.innerWidth >= 1020 ? "center" : "left");
+
+	setAlign();
+
 	const onResize = () => {
 		options.height = `${window.innerHeight*0.8}px`;
 		options.width = `${Math.max(window.innerWidth*0.8, 1000)}px`;
+		setAlign();
 	}
 
 </script>
@@ -70,7 +81,7 @@
 <style>
 .container {
 	display: flex;
-	justify-content: center;
+	justify-content: var(--align);
 }
 
 .country-container {
@@ -89,7 +100,7 @@ Loading...
 {/await}
 </div>
 
-<div class="container">
+<div class="container" style="--align: {align};">
 	<Line api="linedata?indicator={api_path}&code=" code="{code}" options="{options}" />
 </div>
 

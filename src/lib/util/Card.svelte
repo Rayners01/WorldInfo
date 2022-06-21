@@ -1,13 +1,15 @@
 <script>
-import { getDarkMode } from "../../store.js";
+import { getThemeStore } from "../../store.js";
 
 
 export let title;
 export let body;
 export let link;
-export let img_path
+//export let img_path;
 
-const bg = getDarkMode() ? "#2b4154" : "#7893ab";
+let bg = "";
+
+getThemeStore().subscribe(theme => bg = theme ? "#2b4154" : "#7893ab");
 </script>
 
 <style>
@@ -19,7 +21,7 @@ div {
     border-radius: 10px;
     margin: 10px;
     width: 360px;
-    height: 140px;
+    height: 110px;
 }
 
 a {
@@ -27,9 +29,9 @@ a {
     color: inherit;
 }
 
-img {
+/*img {
     width: 80%;
-}
+}*/
 </style>
 
 <a href={link}>

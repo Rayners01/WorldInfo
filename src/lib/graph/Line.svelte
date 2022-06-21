@@ -51,6 +51,8 @@
 <style>
 .source {
 	position: relative;
+	display: flex;
+	justify-content: center;
 }
 .container {
 	position: absolute;
@@ -65,16 +67,16 @@
 	<Circle color="#3977e3" />
 {:then data}
 <div class="container">
-<Switch bind:value={log} onClick={(() => toggle())} label="Logarithmic" fontSize={24} design="slider" />
-<LineChart
-	data={data}
-	options={options}
-	data-carbon-theme={dark}
+	{#if source}
+	<div class="source">
+		<p>Source: {source}</p> 
+	</div>
+	{/if}
+	<Switch bind:value={log} onClick={(() => toggle())} label="Logarithmic" fontSize={24} design="slider" />
+	<LineChart
+		data={data}
+		options={options}
+		data-carbon-theme={dark}
 	/>
-</div>
-{#if source}
-<div class="source">
-	<p>Source: {source}</p> 
-</div>
-{/if}
+	</div>
 {/await}

@@ -71,8 +71,8 @@
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  top: 5px;
-  left: 5px;
+  top: 5%;
+  left: 3%;
   position: absolute;
   font-size: 20px;
   color: var(--theme);

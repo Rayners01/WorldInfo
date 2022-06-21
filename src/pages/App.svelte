@@ -9,16 +9,19 @@ import Exports from "./CircleCharts/Exports.svelte";
 import Polls from "./LineCharts/Polls.svelte";
 import Line from "./LineCharts/WBLine.svelte";
 import Election from "./Election.svelte";
+
+export let location, navigate;
+location = "";
+navigate = "";
 </script>
 
-<Router>
+<Router primary={false}>
     <Route path="/" component={Home} />
     <Route path="explorer" component={Explorer} />
     <Route path="line/:api_path/:code" component={Line} />
     <Route path="import/:code/:year" component={Imports} />
     <Route path="export/:code/:year" component={Exports} />
     <Route path="poll/:party" component={Polls} />
-    <Route path="ge_2019" component={Election} />
+    <Route path="ge/:year" component={Election} />
 </Router>
-
 <Footer />

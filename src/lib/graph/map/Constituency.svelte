@@ -3,7 +3,9 @@
     import Header from "../../util/Header.svelte"
     let dataset = [];
     import Circle from "../../util/Circle.svelte";
-  import { geoPath } from "d3";
+
+    export let year;
+
     d3.json(
        "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Westminster_Parliamentary_Constituencies_December_2020_UK_BUC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
     ).then((data) => {
@@ -22,34 +24,39 @@
       .translate([width / 2, height / 2]);
     var path = d3.geoPath().projection(projection);
     const colour = {
-      "Con": "#0390fc",
-      "Lab": "#fc0303",
-      "SNP": "#fff959",
-      "Green": "#34fa3b",
-      "LD": "#fcbf17",
-      "PC": "#00ff80",
-      "DUP": "#782a2a",
-      "SF": "#2b7552",
-      "Alliance": "#a88b32",
-      "SDLP": "#014714",
-      "Spk": "#6e6e6e"
+      "con": "#0390fc",
+      "lab": "#fc0303",
+      "snp": "#fff959",
+      "green": "#34fa3b",
+      "ld": "#fcbf17",
+      "pc": "#00ff80",
+      "dup": "#782a2a",
+      "sf": "#2b7552",
+      "alliance": "#a88b32",
+      "sdlp": "#014714",
+      "spk": "#ffffff",
+      "ind": "#6e6e6e",
+      "du": "#782a2a",
+      "uup": "#02245c"
     }
     const fullName = {
-      "Con": "Conservatives",
-      "Lab": "Labour",
-      "SNP": "Scottish National Party",
-      "Green": "Green Party",
-      "LD": "Liberal Democrats",
-      "PC": "Plaid Cymru",
-      "DUP": "Democratic Unionist Party",
-      "SF": "Sinn Fein",
-      "Alliance": "Alliance Party NI",
-      "SDLP": "Social Democratic & Labour Party",
-      "Spk": "Speaker"
+      "con": "Conservatives",
+      "lab": "Labour",
+      "snp": "Scottish National Party",
+      "green": "Green Party",
+      "ld": "Liberal Democrats",
+      "pc": "Plaid Cymru",
+      "dup": "Democratic Unionist Party",
+      "sf": "Sinn Fein",
+      "alliance": "Alliance Party NI",
+      "sdlp": "Social Democratic & Labour Party",
+      "spk": "Speaker",
+      "ind": "Independent",
+      "uup": "Ulster Unionist Party"
     }
     let json;
     const fetchData = (async () => {
-      const response = await fetch(process.env.API_URL + "election");
+      const response = await fetch(process.env.API_URL + "election?year=" + year);
       json =  await response.json();
       return json;
     })();
@@ -74,14 +81,8 @@
       const party = json[index];
       const x = event.layerX;
       const y = event.layerY;
-      console.log(event);
       selected = party;
       const cPath = dataset.find(x => x["properties"]["PCON20NM"].toLowerCase() === name.toLowerCase());
-      /*points = "";
-      cPath["geometry"]["coordinates"][0].forEach(s => {
-        points = points + `${s[0]},${s[1]} `;
-      });
-      console.log(points);*/
       constData = cPath;
       constProj = d3.geoMercator().fitSize([80, 80], cPath);
       constPath = d3.geoPath().projection(constProj);
@@ -130,8 +131,8 @@
     background-color: transparent;
     border: 0;
     cursor: pointer;
-    top: 3px;
-    left: 3px;
+    top: 3%;
+    left: 3%;
     position: absolute;
     font-size: 20px;
     color: black;
@@ -154,15 +155,15 @@
       {#each dataset as data}
       <path
         d={path(data)}
-        style="--fill: {colour[getPartyFromName(data["properties"]["PCON20NM"])["party"]]}; --stroke: none"
+        style="--fill: {colour[getPartyFromName(data["properties"]["PCON20NM"])["party"].toLowerCase()]}; --stroke: none"
         on:click={(e) => onClick(e, data["properties"]["PCON20NM"])}
         on:mouseenter={onMouseEnter}
         on:mouseleave={onMouseLeave}
       />
       {/each}
       {#each Object.keys(fullName) as name, i}
-      <rect x="500" y="{400+15*i}" width="10" height="10" style="fill:{colour[name]};stroke-width:2;stroke:black" />
-      <text x="515" y="{410+15*i}">{fullName[name]}</text>
+      <rect x="430" y="{300+15*i}" width="10" height="10" style="fill:{colour[name.toLowerCase()]};stroke-width:2;stroke:black" />
+      <text x="445" y="{310+15*i}">{fullName[name]}</text>
       {/each}
     </svg>
     <div id="tooltip">
@@ -170,11 +171,11 @@
       <div class="tt">
         <button class="close" on:click={close}>&#10006;</button>
         <p>Constituency: {selected["constituency"]}</p>
-        <p>Party: {fullName[selected["party"]]}</p>
+        <p>Party: {fullName[selected["party"].toLowerCase()]}</p>
         <p>Result: {selected["result"]}</p>
         <p>Majority: {selected["majority"]}</p>
         <svg width="80" height="80">
-          <path d={constPath(constData)} style="--fill: {colour[selected["party"]]}; --stroke: black">
+          <path d={constPath(constData)} style="--fill: {colour[selected["party"].toLowerCase()]}; --stroke: black">
           </path>
         </svg>
       </div>
